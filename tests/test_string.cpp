@@ -1,7 +1,9 @@
-#define CATCH_CONFIG_MAIN
-
-#include "catch.hpp"
 #include "MyString.h"
+#include <cassert>
+#include <stdexcept>
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+
 
 
 
@@ -22,7 +24,7 @@ TEST_CASE("TEST 2") {
 }
 
 TEST_CASE("TEST 3") {
-    char * B = "Test3";
+    char B[] = "Test3";
     String A(B, 5);
     const char *pt = A.data();
     REQUIRE(A.size() == 5);
@@ -33,9 +35,9 @@ TEST_CASE("TEST 3") {
 
 TEST_CASE("Test 4") {
     char B = 'q';
-    String A(B, 10);
+    String A(B, 1);
     const char *pt = A.data();
-    REQUIRE(A.size() == 10);
+    REQUIRE(A.size() == 1);
     for (unsigned i = 0; i < A.size(); ++i) {
         REQUIRE(B == *(pt++));
     }
@@ -50,7 +52,6 @@ TEST_CASE("Test5") {
         REQUIRE(B[i] == A[i]);
     }
 }
-
 TEST_CASE("Test6") {
     String B("Test6");
     String C(B);
@@ -86,12 +87,13 @@ TEST_CASE ("Test_assigment2") {
 }
 
 TEST_CASE ("Test_plus_assigment_1") {
-    char *res = "plus_assigment";
+    char res[] = "plus_assigment";
     String A("plus_");
     size_t Asize = A.size();
     String B("assigment");
     size_t Bsize = B.size();
     A += B;
+    std::cout<<A.data()<<std::endl;
     REQUIRE(A.size() == (Asize + Bsize));
     for (size_t i = 0; i <= A.size(); ++i) {
         REQUIRE(res[i] == A[i]);
@@ -99,7 +101,7 @@ TEST_CASE ("Test_plus_assigment_1") {
 }
 
 TEST_CASE ("Test_plus_assigment_2") {
-    char *res = "plus_assigment";
+    char res[] = "plus_assigment";
     String C("plus_");
     size_t Csize = C.size();
     char A[] = "assigment";
@@ -118,7 +120,7 @@ TEST_CASE ("Test_plus_assigment_2") {
 }
 
 TEST_CASE ("Test_plus_assigment_3") {
-    char *res = "plus_";
+    char res[] = "plus_";
     String C("plus");
     size_t  Csize = C.size();
     char A = '_';
@@ -139,15 +141,15 @@ TEST_CASE ("Test_plus_assigment_3") {
 TEST_CASE ("Test_index") {
     String A("Test");
     A[1] = 'a';
-    char *res = "Tast";
+    char res[] = "Tast";
     for (unsigned i = 0; i <= A.size(); ++i) {
         REQUIRE(res[i] == A[i]);
     }
 }
 
 TEST_CASE ("Test_swap") {
-    char *res1 = "hgf";
-    char *res2 = "lkjhgf";
+    char res1[] = "hgf";
+    char res2[] = "lkjhgf";
     String A(res1);
     String B(res2);
     size_t Asize = A.size();
@@ -202,7 +204,7 @@ TEST_CASE ("Test_plus_1") {
 
 TEST_CASE ("Test_plus_2") {
     String A("Test_");
-    char * B = "plus_1";
+    char B[] = "plus_1";
     String C;
     String res("Test_plus_1");
     C = A + B;
@@ -213,7 +215,7 @@ TEST_CASE ("Test_plus_2") {
 
 TEST_CASE ("Test_plus_3") {
     String A("Test_");
-    char * B = "plus_1";
+    char  B[] = "plus_1";
     String C;
     String res("Test_plus_1");
     C = B + A;
