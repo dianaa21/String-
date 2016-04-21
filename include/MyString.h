@@ -152,6 +152,10 @@ bool operator<(const String &lhs, const String &rhs) {
     return false;
 	}
 };
+String operator+(const String &lhs, const String &rhs)
+{
+	return String(lhs) += rhs;
+};
 String operator+(const String &lhs, const char *rhs) {
     return String(lhs) += rhs;
 }
