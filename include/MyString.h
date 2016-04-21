@@ -74,7 +74,7 @@ public:
     String & operator+=(const char *suffix){
 	  int suffixl = 0;
     const char *temp = suffix;
-    while (*(temp++) != '\0') {
+    while (*(temp++) != '\0') 
         suffixl++;
 		  char *concat = new char[l + suffixl + 1];
     for (int i = 0; i < l; ++i)
