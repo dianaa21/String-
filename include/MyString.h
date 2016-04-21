@@ -17,7 +17,7 @@ public:
     String(const char *s){
 		l = std::strlen(s);
 		string = new char[l + 1];
-		std::copy(string, s);
+		std::strcpy(string, s);
 	};
     String(const char *str, unsigned count){
 	 string = new char[count + 1];
@@ -35,7 +35,7 @@ public:
     String(const String &other){
 		string = new char[other.l + 1];
 		l = other.l;
-		std::copy(string,other.string);
+		std::strcpy(string,other.string);
 	};
     String(String &&other)
 	 {
@@ -51,7 +51,7 @@ public:
 	 delete[] string;
 		 string=new char[other.l + 1];
 		 l=other.l;
-		std::copy(string,other.string);
+		std::strcpy(string,other.string);
 	 };
     String & operator=(String &&other){
 	   l = other.l;
