@@ -41,8 +41,7 @@ public:
 	 {
 	 string = other.string;
     l = other.l;
-	 delete[] other.string;
-    other.string = '\0';
+    other.string = nullptr;
     other.l = 0;
 	 };
     ~String(){
