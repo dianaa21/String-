@@ -18,7 +18,6 @@ public:
 		l = std::strlen(s);
 		string = new char[l + 1];
 		std::strcpy(string, s);
-		string[l]='/0';
 	};
     String(const char *str, unsigned count){
 	 string = new char[count + 1];
