@@ -86,7 +86,7 @@ public:
     String & operator+=(char suffix){
 	 char *c = new char[l + 2];
     for (int i = 0; i < l; ++i)
-        concat[i] = string[i];
+        c[i] = string[i];
     c[l] = suffix;
     c[l + 1] = '\0';
     delete[] string;
