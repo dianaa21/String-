@@ -1,8 +1,7 @@
 #ifndef CPP_STRING_H
 #define CPP_STRING_H
-#include <stddef.h>
 #include <stdexcept>
-
+#include <cstring>
 
 class String {
 private:
@@ -16,15 +15,9 @@ public:
 		string[0]='\0';
 	};
     String(const char *s){
-	   l=0;
-		const char *t = str;
-		while (*(t++) != '\0')
-			l++;
-		   char *str = new char[l + 1];
-		for (int i = 0; i < l; i++)
-			str[i] = s[i];
-    string = str
-    string[l] = '\0';
+		l = std::strlen(s);
+		string = new char[l + 1];
+		std::copy(string, s);
 	};
     String(const char *str, unsigned count){
 	 string = new char[count + 1];
@@ -35,16 +28,14 @@ public:
     String(char ch, unsigned count){
 		l = count;
 		string = new char[l + 1];
-		char *t = string;
       for (int i = 0; i <= l; i++)
-        t[i] = ch;
-		t[l] = '\0';
+        string[i] = ch;
+		string[l] = '\0';
 	};
     String(const String &other){
 		string = new char[other.l + 1];
 		l = other.l;
-		for (int i = 0; i <= l; i++)
-			string[i] = other.string[i];
+		std::copy(string,other.string);
 	};
     String(String &&other)
 	 {
@@ -57,21 +48,16 @@ public:
         delete[] string;
     };
     String & operator=(const String &other){
-	    delete[] string;
+	 delete[] string;
 		 string=new char[other.l + 1];
 		 l=other.l;
-		for (int i = 0; i < l; i++)
-        string[i]=other.string[i];
-		string[l] = '\0';
-    return *this;
+		std::copy(string,other.string);
 	 };
     String & operator=(String &&other){
-	     delete[] string;
+	   l = other.l;
 		string = other.string;
-		l = other.l;
-		other.string = '\0';
 		other.l = 0;
-		return *this;
+		other.string = nullptr;
 	 };
     String & operator+=(const String &suffix){  
 	 char *concat = new char[l + suffix.l + 1];
@@ -142,7 +128,7 @@ public:
 	 return string;
 	 };
     int size() const{
-	 return length;
+	 return l;
 	 };
 bool operator==(const String &lhs, const String &rhs) {
     if (lhs.l == rhs.l){
@@ -169,23 +155,18 @@ bool operator<(const String &lhs, const String &rhs) {
 String operator+(const String &lhs, const char *rhs) {
     return String(lhs) += rhs;
 }
-
 String operator+(const char *lhs, const String &rhs) {
     return String(rhs) += lhs;
 }
-
 bool operator!=(const String &lhs, const String &rhs) {
     return !(lhs == rhs);
 }
-
 bool operator<=(const String &lhs, const String &rhs) {
     return (lhs == rhs) || (lhs < rhs);
 }
-
 bool operator>(const String &lhs, const String &rhs) {
     return !(lhs <= rhs);
 }
-
 bool operator>=(const String &lhs, const String &rhs) {
     return !(lhs < rhs);
 }
