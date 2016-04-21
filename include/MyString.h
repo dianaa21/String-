@@ -18,7 +18,6 @@ public:
 		l = std::strlen(s);
 		string = new char[l + 1];
 		std::strcpy(string, s);
-		string[l] = '\0';
 	};
     String(const char *str, unsigned count){
 	 string = new char[count + 1];
@@ -28,19 +27,19 @@ public:
 		string[l] = '\0';
     };
     String(char ch, unsigned count){
-		l = count;
+		l=count;
 		string = new char[l + 1];
       for (int i = 0; i <= l; i++)
-        string[i] = ch;
-		string[l] = '\0';
+        string[i]=ch;
+		string[l]='\0';
 	};
     String(const String &other){
 		string = new char[other.l + 1];
-		l = other.l;
+		l=other.l;
 		std::strcpy(string,other.string);
+		string[l]='\0';
 	};
-    String(String &&other)
-	 {
+    String(String &&other){
 	 string = other.string;
     l = other.l;
     other.string = nullptr;
