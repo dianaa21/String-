@@ -18,12 +18,14 @@ public:
 		l = std::strlen(s);
 		string = new char[l + 1];
 		std::strcpy(string, s);
+		string[l] = '\0';
 	};
     String(const char *str, unsigned count){
 	 string = new char[count + 1];
     l = count;
     for (int i = 0; i <= l; i++)
         string[i] = str[i];
+		string[l] = '\0';
     };
     String(char ch, unsigned count){
 		l = count;
