@@ -24,14 +24,14 @@ public:
     l = count;
     for (int i = 0; i <= l; i++)
         string[i] = str[i];
-		string[l] = '\0';
+		string[l+1] = '\0';
     };
     String(char ch, unsigned count){
 		l=count;
 		string = new char[l + 1];
       for (int i = 0; i <= l; i++)
         string[i]=ch;
-		string[l]='\0';
+		string[l+1]='\0';
 	};
     String(const String &other){
 		string = new char[other.l + 1];
