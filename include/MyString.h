@@ -130,7 +130,7 @@ public:
     int size() const{
 	 return l;
 	 };
-bool operator==(const String &lhs, const String &rhs) {
+friend bool operator==(const String &lhs, const String &rhs){
     if (lhs.l == rhs.l){
         for (int i = 0; i < lhs.l; ++i)
             if (lhs.string[i] != rhs.string[i])
@@ -139,7 +139,7 @@ bool operator==(const String &lhs, const String &rhs) {
 		  }
     return false;
 	}
-bool operator<(const String &lhs, const String &rhs) {
+friend bool operator<(const String &lhs, const String &rhs){
     int size;
     size = lhs.l <= rhs.l ? lhs.l : rhs.l;
     for (int i = 0; i < size; ++i)
@@ -152,26 +152,25 @@ bool operator<(const String &lhs, const String &rhs) {
     return false;
 	}
 };
-String operator+(const String &lhs, const String &rhs)
-{
+String operator+(const String &lhs, const String &rhs){
 	return String(lhs) += rhs;
 };
-String operator+(const String &lhs, const char *rhs) {
+String operator+(const String &lhs, const char *rhs){
     return String(lhs) += rhs;
 }
-String operator+(const char *lhs, const String &rhs) {
+String operator+(const char *lhs, const String &rhs){
     return String(rhs) += lhs;
 }
-bool operator!=(const String &lhs, const String &rhs) {
+bool operator!=(const String &lhs, const String &rhs){
     return !(lhs == rhs);
 }
-bool operator<=(const String &lhs, const String &rhs) {
+bool operator<=(const String &lhs, const String &rhs){
     return (lhs == rhs) || (lhs < rhs);
 }
-bool operator>(const String &lhs, const String &rhs) {
+bool operator>(const String &lhs, const String &rhs){
     return !(lhs <= rhs);
 }
-bool operator>=(const String &lhs, const String &rhs) {
+bool operator>=(const String &lhs, const String &rhs){
     return !(lhs < rhs);
 }
 #endif
