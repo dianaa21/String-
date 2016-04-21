@@ -44,14 +44,6 @@ TEST_CASE("Test 4") {
     REQUIRE('\0' == *pt);
 }
 
-TEST_CASE("Test5") {
-    String B("Test5");
-    String A(B);
-    REQUIRE(A.size() == B.size());
-    for (unsigned i = 0; i <= A.size(); ++i) {
-        REQUIRE(B[i] == A[i]);
-    }
-}
 TEST_CASE("Test6") {
     String B("Test6");
     String C(B);
