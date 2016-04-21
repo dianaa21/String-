@@ -41,6 +41,7 @@ public:
 	 {
 	 string = other.string;
     l = other.l;
+	 delete[] other.string;
     other.string = '\0';
     other.l = 0;
 	 };
@@ -60,41 +61,37 @@ public:
 		other.string = nullptr;
 	 };
     String & operator+=(const String &suffix){  
-	 char *concat = new char[l + suffix.l + 1];
+	 char *c = new char[l + suffix.l + 1];
     for (int i = 0; i < l; ++i)
-        concat[i] = string[i];
+        c[i] = string[i];
     for (int j = l; j < l + suffix.l; ++j)
-        concat[j] = suffix.string[j - l];
-    concat[l + suffix.l] = '\0';
+        c[j] = suffix.string[j - l];
+    c[l + suffix.l] = '\0';
     delete[] string;
-    string = concat;
+    string = c;
     l += suffix.l;
     return *this;
 	 };
     String & operator+=(const char *suffix){
-	  int suffixl = 0;
-    const char *temp = suffix;
-    while (*(temp++) != '\0') 
-        suffixl++;
-		  char *concat = new char[l + suffixl + 1];
+	  char *c = new char[l + std::strlen(suffix) + 1];
     for (int i = 0; i < l; ++i)
-        concat[i] = string[i];
-    for (int j = l; j < l + suffixl; ++j)
-        concat[j] = suffix[j - l];
-    concat[l + suffixl] = '\0';
+        c[i] = string[i];
+    for (int j = l; j < l + std::strlen(suffix); ++j)
+        c[j] = suffix[j - l];
+    c[l + std::strlen(suffix)] = '\0';
     delete[] string;
-    string = concat;
-    l += suffixl;
+    string = c;
+    l += std::strlen(suffix);
     return *this;
 	 };
     String & operator+=(char suffix){
-	 char *concat = new char[l + 2];
+	 char *c = new char[l + 2];
     for (int i = 0; i < l; ++i)
         concat[i] = string[i];
-    concat[l] = suffix;
-    concat[l + 1] = '\0';
+    c[l] = suffix;
+    c[l + 1] = '\0';
     delete[] string;
-    string = concat;
+    string = c;
     l++;
     return *this;
 	 };
