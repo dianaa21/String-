@@ -65,8 +65,8 @@ TEST_CASE("Test6") {
 
 TEST_CASE ("Test_assigment1") {
     String A("Test_assigment1");
-    String B, C;
-    C = B = A;
+    String C;
+    C = A;
     REQUIRE(A.size() == C.size());
     for (unsigned i = 0; i <= A.size(); ++i) {
         REQUIRE(C[i] == A[i]);
