@@ -62,39 +62,40 @@ public:
 		string = other.string;
 		other.l = 0;
 		other.string = nullptr;
+		return *this;
 	 }
     String & operator+=(const String &suffix){  
-	 char *c = new char[l + suffix.l + 1];
+	 char *c = t= new char[l + suffix.l + 1];
     for (int i = 0; i < l; ++i)
         c[i] = string[i];
     for (int j = l; j < l + suffix.l; ++j)
         c[j] = suffix.string[j - l];
     c[l + suffix.l] = '\0';
     delete[] string;
-    string = c;
+    string = t;
     l += suffix.l;
     return *this;
 	 }
     String & operator+=(const char *suffix){
-	  char *c = new char[l + std::strlen(suffix) + 1];
+	  char *c = t = new char[l + std::strlen(suffix) + 1];
     for (int i = 0; i < l; ++i)
         c[i] = string[i];
     for (int j = l; j < l + std::strlen(suffix); ++j)
         c[j] = suffix[j - l];
     c[l + std::strlen(suffix)] = '\0';
     delete[] string;
-    string = c;
+    string = t;
     l += std::strlen(suffix);
     return *this;
 	 }
     String & operator+=(char suffix){
-	 char *c = new char[l + 2];
+	 char *c =t = new char[l + 2];
     for (int i = 0; i < l; ++i)
         c[i] = string[i];
     c[l] = suffix;
     c[l + 1] = '\0';
     delete[] string;
-    string = c;
+    string = t;
     l++;
     return *this;
 	 }
