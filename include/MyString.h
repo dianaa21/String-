@@ -64,7 +64,8 @@ public:
 		other.string = nullptr;
 		return *this;
 	 }
-    String & operator+=(const String &suffix){  
+    String & operator+=(const String &suffix){ 
+char *t;	 
 	 char *c = t= new char[l + suffix.l + 1];
     for (int i = 0; i < l; ++i)
         c[i] = string[i];
@@ -77,6 +78,7 @@ public:
     return *this;
 	 }
     String & operator+=(const char *suffix){
+	  char *t;
 	  char *c = t = new char[l + std::strlen(suffix) + 1];
     for (int i = 0; i < l; ++i)
         c[i] = string[i];
@@ -89,6 +91,7 @@ public:
     return *this;
 	 }
     String & operator+=(char suffix){
+	 char *t;
 	 char *c =t = new char[l + 2];
     for (int i = 0; i < l; ++i)
         c[i] = string[i];
