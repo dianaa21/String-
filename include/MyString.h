@@ -13,39 +13,37 @@ public:
 		l=0;
 		string=new char[1];
 		string[0]='\0';
-	};
+	}
     String(const char *s){
 		l = std::strlen(s);
 		string = new char[l + 1];
 		std::strcpy(string, s);
-	};
+	}
     String(const char *str, unsigned count){
 	 string = new char[count + 1];
     l = count;
     for (int i = 0; i < l; i++)
         string[i] = str[i];
 		string[l] = '\0';
-    };
+    }
     String(char ch, unsigned count){
 		l=count;
 		string = new char[l + 1];
       for (int i = 0; i < l; i++)
         string[i]=ch;
 		string[l]='\0';
-	};
+	}
     String(const String &other){
 		string = new char[other.l + 1];
 		l=other.l;
 		std::strcpy(string,other.string);
 		string[l]='\0';
-	};
+	}
     String(String &&other){
 	 string = other.string;
     l = other.l;
-    char nully = '\0';
-    other.string = &(nully);
+    other.string = nullptr;
 	 other.l = 0;
-	 
 	 };
     ~String(){
         delete[] string;
@@ -55,13 +53,13 @@ public:
 		 string=new char[other.l + 1];
 		 l=other.l;
 		std::strcpy(string,other.string);
-	 };
+	 }
     String & operator=(String &&other){
 	   l = other.l;
 		string = other.string;
 		other.l = 0;
 		other.string = nullptr;
-	 };
+	 }
     String & operator+=(const String &suffix){  
 	 char *c = new char[l + suffix.l + 1];
     for (int i = 0; i < l; ++i)
@@ -73,7 +71,7 @@ public:
     string = c;
     l += suffix.l;
     return *this;
-	 };
+	 }
     String & operator+=(const char *suffix){
 	  char *c = new char[l + std::strlen(suffix) + 1];
     for (int i = 0; i < l; ++i)
@@ -85,7 +83,7 @@ public:
     string = c;
     l += std::strlen(suffix);
     return *this;
-	 };
+	 }
     String & operator+=(char suffix){
 	 char *c = new char[l + 2];
     for (int i = 0; i < l; ++i)
@@ -96,7 +94,7 @@ public:
     string = c;
     l++;
     return *this;
-	 };
+	 }
     void swap(String &other){
 	 char *tmp;
     int tmpl;
@@ -106,29 +104,29 @@ public:
     l = other.l;
     other.string = tmp;
     other.l = tmpl;
-	 };
+	 }
     char & operator[](int pos){   
 	 return string[pos];
-	 };
+	 }
     const char operator[](int pos) const{
 	     return string[pos];
-	};
+	}
     char & at(int pos){    
 	 if (pos >= l) 
         throw std::out_of_range("");
     return string[pos];
-	};
+	}
     const char at(int pos) const{
 	  if (pos >= l) 
         throw std::out_of_range("");
     return string[pos];
-	 };
+	 }
     const char * data() const{
 	 return string;
-	 };
+	 }
     int size() const{
 	 return l;
-	 };
+	 }
 friend bool operator==(const String &lhs, const String &rhs){
     if (lhs.l == rhs.l){
         for (int i = 0; i < lhs.l; ++i)
