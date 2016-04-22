@@ -55,6 +55,7 @@ public:
 		 l=other.l;
 		std::strcpy(string,other.string);
 		string[l] = '\0';
+		return *this;
 	 }
     String & operator=(String &&other){
 	   l = other.l;
