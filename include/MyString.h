@@ -42,8 +42,9 @@ public:
     String(String &&other){
 	 string = other.string;
     l = other.l;
-    other.string = nullptr;
-    other.l = 0;
+    char nully = '\0';
+    other.string = &(nully);
+	 other.l = 0;
 	 };
     ~String(){
         delete[] string;
