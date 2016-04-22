@@ -61,7 +61,7 @@ TEST_CASE("Test6") {
         REQUIRE(C[i] == A[i]);
     }
     REQUIRE(B.size() == 0);
-    REQUIRE(*(B.data()) == '\0');
+    REQUIRE((B.data()) == '\0');
 }
 
 TEST_CASE ("Test_assigment1") {
