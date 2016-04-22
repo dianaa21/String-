@@ -53,6 +53,7 @@ public:
 		 string=new char[other.l + 1];
 		 l=other.l;
 		std::strcpy(string,other.string);
+		string[l] = '\0';
 	 }
     String & operator=(String &&other){
 	   l = other.l;
